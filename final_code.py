@@ -192,7 +192,7 @@ if uploaded_files:
   
 
     if 'vectorstore' not in st.session_state:
-        vectorstore = Chroma(collection_name="aberd133",embedding_function=OpenAIEmbeddings(openai_api_key="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"))
+        vectorstore = Chroma(collection_name="aberd133",embedding_function=OpenAIEmbeddings(openai_api_key=""))
         st.session_state["vectorstore"] = vectorstore
     else:
         vectorstore = st.session_state["vectorstore"]
@@ -228,7 +228,7 @@ if uploaded_files:
             ])
         ]
         response = ChatOpenAI(model="gpt-4-vision-preview", max_tokens=1024).invoke(prompt)
-        # response = ChatGoogleGenerativeAI(model="gemini-pro-vision",google_api_key="AIzaSyC5bAj2EV6itXLJa_tUwTOKIBocLaGaR2w",convert_system_message_to_human=True).invoke(prompt)
+        
         return response.content
     
     image_elements = []
@@ -296,12 +296,10 @@ if uploaded_files:
         return retriever    
 
    
-    # vectorstore = Chroma(collection_name="aberd133",embedding_function=OpenAIEmbeddings(openai_api_key="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"))
-    # retriever=multi_vector_retreiver(vectorstore,texts,tables,text_summaries,table_summaries,image_elements,image_summaries)
 
      # Create Vectore store
     if 'vectorstore' not in st.session_state:
-        vectorstore = Chroma(collection_name="aberd140",embedding_function=OpenAIEmbeddings(openai_api_key="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"))
+        vectorstore = Chroma(collection_name="aberd140",embedding_function=OpenAIEmbeddings(openai_api_key=""))
         st.session_state["vectorstore"] = vectorstore
     else:
         vectorstore = st.session_state["vectorstore"]
@@ -327,7 +325,7 @@ if uploaded_files:
 
     # LLM
     model = ChatOpenAI(temperature=0)
-    # model=ChatGoogleGenerativeAI(model="gemini-pro",google_api_key="AIzaSyC5bAj2EV6itXLJa_tUwTOKIBocLaGaR2w")
+ 
 
     # RAG pipeline
     chain = (
@@ -341,12 +339,6 @@ if uploaded_files:
 
     if(question):
         response=chain.invoke(question)
-        # search_results = vectorstore.similarity_search(question)
-        # response=search_results[0]
-        # metadata_id = response.metadata['id']
-        # st.write(metadata_id)
-        # source_data = retriever.docstore.mget(metadata_id)
-        # st.write(type(source_data))
         st.write('Response from InfoGenie:')
         with st.container(height=300):
             st.write(response)
