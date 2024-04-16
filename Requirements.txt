@@ -1,0 +1,11 @@
+tesseract-ocr
+poppler-utils
+unstructured[all-docs]
+Langchain
+openai
+chromadb
+tiktoken
+langchain_openai
+langchain_google_genai
+os
+
